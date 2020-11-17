@@ -47,7 +47,7 @@ def tagMatrix(trainingSet, tags):
 
 
 # implementation of viterbi algorithm
-def viterbi(words, trainingSet, tagList, transmissionProbMatrix):
+def viterbi(words, trainingSet, tagList, transProbMatrix):
     state = []
     taggedWordsList = []
     tagsDict = defaultdict(list)
@@ -59,11 +59,11 @@ def viterbi(words, trainingSet, tagList, transmissionProbMatrix):
         probabilities = []
         for tag in tagList:
             if i == 0:
-                transitionProbability = transmissionProbMatrix[tagsDict['.']
-                                                               [0]][tagsDict[tag][0]]
+                transitionProbability = transProbMatrix[tagsDict['.']
+                                                        [0]][tagsDict[tag][0]]
             else:
-                transitionProbability = transmissionProbMatrix[tagsDict[state[-1]]
-                                                               [0]][tagsDict[tag][0]]
+                transitionProbability = transProbMatrix[tagsDict[state[-1]]
+                                                        [0]][tagsDict[tag][0]]
             emmissionProbability = emissionProb(word, tag, trainingSet)
             probability = emmissionProbability * transitionProbability
             probabilities.append(probability)
